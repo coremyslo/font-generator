@@ -32,6 +32,6 @@ await fontGenerator.write(path.join(process.cwd(), "./path/to/target/directory")
 * formats: An array of supported font formats. Default `["svg", "ttf", "woff", "woff2", "eot"]`.
 
 ### `async generate(icons: Map<string, Icon>): Promise<void>`
-* Generate the font files in memory for the specified icon collection. Caches the result, calling again with same icons taking fonts from cache
+* Generate the font files in memory for the specified icon collection. Caches the result, so calling again with the same icons retrieves the fonts from the cache.
 ### `async write(targetDirPath: string): Promise<void>`
 * Write the generated font files to the specified directory.
