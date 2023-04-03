@@ -1,0 +1,49 @@
+{
+    "name": "@coremyslo/font-generator",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/coremyslo/font-generator"
+    },
+    "keywords": [
+        "glyph",
+        "icon",
+        "generator",
+        "font"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig-build.json",
+        "lint": "eslint --fix --ext .ts .",
+        "dev": "yarn lint && yarn build && yarn icon-font",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@types/ttf2eot": "^2.0.0",
+        "@types/ttf2woff2": "^2.0.0",
+        "svg2ttf": "^6.0.3",
+        "svgicons2svgfont": "^12.0.0",
+        "ttf2eot": "^3.1.0",
+        "ttf2woff": "^3.0.0",
+        "ttf2woff2": "^5.0.0",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@coremyslo/icon-generator": "^2.0.1",
+        "@types/jest": "^29.4.0",
+        "@types/node": "^18.14.1",
+        "@types/svg2ttf": "^5.0.1",
+        "@types/svgicons2svgfont": "^10.0.1",
+        "@types/ttf2woff": "^2.0.2",
+        "@types/uuid": "^9.0.1",
+        "@typescript-eslint/eslint-plugin": "^5.53.0",
+        "@typescript-eslint/parser": "^5.53.0",
+        "eslint": "^8.34.0",
+        "eslint-plugin-jest": "^27.2.1",
+        "jest": "^29.4.3",
+        "ts-jest": "^29.0.5",
+        "typescript": "^4.9.5"
+    },
+    "license": "MIT"
+}
