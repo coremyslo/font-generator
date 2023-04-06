@@ -112,16 +112,23 @@ test("generate all", async () => {
     expect(typeof fontGenerator.fonts.get("eot")).toBe("object");
 });
 test("write", async () => {
-    const folder = "test/fonts/new";
+    const folder = "./test/fonts/new";
     const fontGenerator = new FontGenerator({
         formats: ["woff2"],
     });
     await fontGenerator.generate(iconGenerator.icons);
-    await fontGenerator.write(path.join(process.cwd(), folder));
+    await fontGenerator.write(folder);
 
-    await expect(fsp.access(path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.svg`))).rejects.toThrow(`ENOENT: no such file or directory, access '${path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.svg`)}'`);
-    await expect(fsp.access(path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.ttf`))).rejects.toThrow(`ENOENT: no such file or directory, access '${path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.ttf`)}'`);
-    await expect(fsp.access(path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.woff`))).rejects.toThrow(`ENOENT: no such file or directory, access '${path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.woff`)}'`);
-    await expect(fsp.access(path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.woff2`))).resolves.toBeUndefined();
-    await expect(fsp.access(path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.eot`))).rejects.toThrow(`ENOENT: no such file or directory, access '${path.join(process.cwd(), `${folder}/${fontGenerator.options.name}.eot`)}'`);
+    await expect(fsp.access(`${folder}/${fontGenerator.options.name}.svg`)).rejects.toThrow(`ENOENT: no such file or directory, access '${`${folder}/${fontGenerator.options.name}.svg`}'`);
+    await expect(fsp.access(`${folder}/${fontGenerator.options.name}.ttf`)).rejects.toThrow(`ENOENT: no such file or directory, access '${`${folder}/${fontGenerator.options.name}.ttf`}'`);
+    await expect(fsp.access(`${folder}/${fontGenerator.options.name}.woff`)).rejects.toThrow(`ENOENT: no such file or directory, access '${`${folder}/${fontGenerator.options.name}.woff`}'`);
+    await expect(fsp.access(`${folder}/${fontGenerator.options.name}.woff2`)).resolves.toBeUndefined();
+    await expect(fsp.access(`${folder}/${fontGenerator.options.name}.eot`)).rejects.toThrow(`ENOENT: no such file or directory, access '${`${folder}/${fontGenerator.options.name}.eot`}'`);
+});
+
+test("formats remove duplicates and sort", () => {
+    const fontGenerator = new FontGenerator({
+        formats: ["ttf", "eot", "woff2", "woff", "woff2"],
+    });
+    expect(fontGenerator.options.formats).toEqual(["woff2", "woff", "ttf", "eot"]);
 });

@@ -35,3 +35,5 @@ await fontGenerator.write(path.join(process.cwd(), "./path/to/target/directory")
 * Generate the font files in memory for the specified icon collection. Caches the result, so calling again with the same icons retrieves the fonts from the cache.
 ### `async write(targetDirPath: string): Promise<void>`
 * Write the generated font files to the specified directory.
+### `fonts: Map<string, Buffer>`
+* contains the generated font files in memory.
