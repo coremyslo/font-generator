@@ -13,12 +13,12 @@ npm install @coremyslo/font-generator
 import { FontGenerator } from "@coremyslo/font-generator";
 import { IconGenerator } from "@coremyslo/icon-generator";
 
-const iconGenerator = new IconGenerator(process.cwd(), "./path/to/icon/source/directory");
+const iconGenerator = new IconGenerator("./path/to/icon/source/directory");
 await iconGenerator.read();
 
 const fontGenerator = new FontGenerator();
 await fontGenerator.generate(iconGenerator.icons);
-await fontGenerator.write(path.join(process.cwd(), "./path/to/target/directory"));
+await fontGenerator.write("./path/to/target/directory");
 ```
 
 ## API
