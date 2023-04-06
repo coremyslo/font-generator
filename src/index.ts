@@ -29,12 +29,15 @@ export class FontGenerator {
         height: 1024,
         normalize: true,
         round: 1,
-        formats: ["svg", "ttf", "woff", "woff2", "eot"],
+        formats: ["woff2", "woff", "ttf", "svg", "eot"],
     };
 
     public fonts = new Map<FontFormat, Font>();
 
     public constructor (options: Partial<Options> = {}) {
+        if (options.formats) {
+            options.formats = [...new Set(options.formats)].sort((a, b) => this.options.formats.indexOf(a) - this.options.formats.indexOf(b));
+        }
         this.options = { ...this.options, ...options };
     }
 

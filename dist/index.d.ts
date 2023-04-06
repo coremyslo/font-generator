@@ -1,12 +1,12 @@
-import type { Case, FontFormat } from "./types";
+import type { FontFormat } from "./types";
 import type { Icon } from "@coremyslo/svg-to-icon";
 export interface Options {
     name: string;
-    case: Case;
     unicode: string;
     height: number;
     normalize: boolean;
     round: number;
+    formats: FontFormat[];
 }
 export interface Font {
     uuid: string;
@@ -18,5 +18,6 @@ export declare class FontGenerator {
     readonly options: Options;
     fonts: Map<FontFormat, Font>;
     constructor(options?: Partial<Options>);
-    generate(format: FontFormat, icons: Map<string, Icon>, uuid?: string): Promise<void>;
+    write(targetDirPath: string): Promise<void>;
+    generate(icons: Map<string, Icon>): Promise<void>;
 }
