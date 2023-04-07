@@ -23,7 +23,7 @@ export interface Font {
 export class FontGenerator {
     public static readonly uuid = "3ca97b56-a2f4-4530-92f4-5e0219bc63a7";
 
-    public readonly options: Options = {
+    public static readonly optionsDefault: Options = {
         name: "icon-font",
         unicode: "0xE900",
         height: 1024,
@@ -31,6 +31,8 @@ export class FontGenerator {
         round: 1,
         formats: ["woff2", "woff", "ttf", "svg", "eot"],
     };
+
+    public readonly options: Options = FontGenerator.optionsDefault;
 
     public fonts = new Map<FontFormat, Font>();
 

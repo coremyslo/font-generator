@@ -36,14 +36,7 @@ const node_fs_1 = require("node:fs");
 class FontGenerator {
     constructor(options = {}) {
         _FontGenerator_instances.add(this);
-        this.options = {
-            name: "icon-font",
-            unicode: "0xE900",
-            height: 1024,
-            normalize: true,
-            round: 1,
-            formats: ["woff2", "woff", "ttf", "svg", "eot"],
-        };
+        this.options = FontGenerator.optionsDefault;
         this.fonts = new Map();
         if (options.formats) {
             options.formats = [...new Set(options.formats)].sort((a, b) => this.options.formats.indexOf(a) - this.options.formats.indexOf(b));
@@ -180,3 +173,11 @@ _a = FontGenerator, _FontGenerator_instances = new WeakSet(), _FontGenerator_get
     });
 };
 FontGenerator.uuid = "3ca97b56-a2f4-4530-92f4-5e0219bc63a7";
+FontGenerator.optionsDefault = {
+    name: "icon-font",
+    unicode: "0xE900",
+    height: 1024,
+    normalize: true,
+    round: 1,
+    formats: ["woff2", "woff", "ttf", "svg", "eot"],
+};
